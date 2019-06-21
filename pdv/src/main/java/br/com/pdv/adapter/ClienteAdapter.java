@@ -9,6 +9,7 @@ import br.com.pdv.domain.Cliente;
 import br.com.pdv.domain.Endereco;
 import br.com.pdv.domain.Sexo;
 import br.com.pdv.domain.dto.ClienteRequestDTO;
+import br.com.pdv.domain.dto.ClienteResponseDTO;
 
 @Component
 public class ClienteAdapter {
@@ -25,6 +26,10 @@ public class ClienteAdapter {
                 .withSexo(Sexo.valueOf(request.getSexo()))
                 .withEndereco(endereco)
                 .build();
+    }
+    
+    public ClienteResponseDTO entityToResponse() {
+        
     }
     
 }
