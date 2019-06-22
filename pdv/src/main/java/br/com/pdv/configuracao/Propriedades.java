@@ -23,7 +23,7 @@ public class Propriedades {
     private static Map<String, String> configuracoes = new HashMap<>();
 
     @PostConstruct
-    public void inicilizar() {
+    public void inicializar() {
         LOG.debug("Inicializando configuracoes...");
         
         configuracaoRepository.findAll().stream()
