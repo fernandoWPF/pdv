@@ -14,13 +14,13 @@ public class ExceptionControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
-    public ErrorDTO genericException(final Exception exception) {
+    public ErrorDTO trataException(final Exception exception) {
         return new ErrorDTO(exception.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorDTO validationException(final MethodArgumentNotValidException exception) {
+    public ErrorDTO trataException(final MethodArgumentNotValidException exception) {
         StringBuilder builder = new StringBuilder();
         BindingResult bindingResult = exception.getBindingResult();
         builder.append("[Atributo]: ");
