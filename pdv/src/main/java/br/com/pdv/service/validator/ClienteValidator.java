@@ -15,7 +15,7 @@ public class ClienteValidator implements Validator<ClienteRequestDTO>{
     private static final Logger LOG = LogManager.getLogger(ClienteValidator.class);
 
     public void validate(ClienteRequestDTO request) {
-        LOG.debug("Request recebido: {}", request);
+        LOG.debug("Validando request recebido: {}", request);
         validaSexo(request.getSexo());
         LOG.debug("Request validado.");
     }
