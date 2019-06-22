@@ -6,15 +6,17 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pdv.domain.Cliente;
 import br.com.pdv.domain.dto.ClienteRequestDTO;
+import br.com.pdv.domain.dto.ClienteResponseDTO;
 import br.com.pdv.service.ClienteService;
 
 @RestController
@@ -28,14 +30,19 @@ public class ClienteController {
     public void salvar(@RequestBody @Valid ClienteRequestDTO request) {
         service.salvar(request);
     }
-    
-    @PutMapping("/v1/clientes")
-    public void alterar(@RequestBody @Valid ClienteRequestDTO request) {
-        service.alterar(request);
+
+    @PutMapping("/v1/clientes/{id}")
+    public void alterar(@PathVariable String id, @RequestBody @Valid ClienteRequestDTO request) {
+        service.alterar(id, request);
+    }
+
+    @GetMapping("/v1/clientes")
+    public List<ClienteResponseDTO> buscarTodos() {
+        return service.buscarTodos();
     }
     
-    @GetMapping("/v1/clientes")
-    public List<Cliente> buscarTodos() {
-        return service.buscarTodos();
+    @DeleteMapping("/v1/clientes/{id}")
+    public void excluir(@PathVariable String id) {
+        service.excluir(id);
     }
 }
