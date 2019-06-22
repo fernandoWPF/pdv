@@ -14,7 +14,8 @@ public class ClienteRequestDTO {
     private String cpf;
     @NotBlank
     private String sexo;
-    @Pattern(regexp = "\\d{8}")
+    @NotBlank
+    @Pattern(regexp = "\\d{8}", message = "Cep invalido")
     private String cep;
     @NotNull
     private Integer numeroEndereco;
