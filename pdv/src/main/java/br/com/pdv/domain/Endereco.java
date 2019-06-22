@@ -86,4 +86,25 @@ public class Endereco {
         return complemento;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Endereco [cep=");
+        builder.append(cep);
+        builder.append(", cidade=");
+        builder.append(cidade);
+        builder.append(", estado=");
+        builder.append(estado);
+        builder.append(", logradouro=");
+        builder.append(logradouro);
+        builder.append(", bairro=");
+        builder.append(bairro);
+        builder.append(", numero=");
+        builder.append(numero);
+        builder.append(", complemento=");
+        builder.append(complemento);
+        builder.append("]");
+        return builder.toString();
+    }
+
 }
