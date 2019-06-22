@@ -11,6 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ClienteTest {
 
     @Test
+    public void deveValidarCriacaoDeClienteNaoNulo() {
+        Cliente cliente = new Cliente.ClienteBuilder().build();
+        
+        Assert.assertNotNull(cliente);
+    }
+    
+    @Test
     public void deveValidarNome() {
         Cliente cliente = new Cliente.ClienteBuilder().withNome("JOAO").build();
 
@@ -59,5 +66,14 @@ public class ClienteTest {
         Cliente cliente = new Cliente.ClienteBuilder().withEndereco(endereco).build();
 
         Assert.assertEquals(endereco, cliente.getEndereco());
+    }
+    
+    @Test
+    public void deveValidarMetodoForUpdate() {
+        Cliente cliente1 = new Cliente.ClienteBuilder().build();
+        
+        Cliente cliente2 = new Cliente.ClienteBuilder().forUpdate(cliente1).build();
+        
+        Assert.assertEquals(cliente1, cliente2);
     }
 }
