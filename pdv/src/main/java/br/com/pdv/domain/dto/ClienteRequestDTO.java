@@ -10,7 +10,7 @@ public class ClienteRequestDTO {
 
     @NotBlank
     private String nome;
-    @CPF
+    @CPF(message = "CPF invalido")
     private String cpf;
     @NotBlank
     private String sexo;

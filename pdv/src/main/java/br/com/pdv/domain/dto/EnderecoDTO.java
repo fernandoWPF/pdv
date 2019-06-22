@@ -6,7 +6,7 @@ public class EnderecoDTO {
     private String estado;
     private String logradouro;
     private String bairro;
-    private String numero;
+    private Integer numero;
     private String complemento;
 
     public static final class EnderecoDTOBuilder {
@@ -42,7 +42,7 @@ public class EnderecoDTO {
             return this;
         }
 
-        public EnderecoDTOBuilder withNumero(String numero) {
+        public EnderecoDTOBuilder withNumero(Integer numero) {
             dto.numero = numero;
             return this;
         }
@@ -77,12 +77,33 @@ public class EnderecoDTO {
         return bairro;
     }
 
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
     public String getComplemento() {
         return complemento;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("EnderecoDTO [cep=");
+        builder.append(cep);
+        builder.append(", cidade=");
+        builder.append(cidade);
+        builder.append(", estado=");
+        builder.append(estado);
+        builder.append(", logradouro=");
+        builder.append(logradouro);
+        builder.append(", bairro=");
+        builder.append(bairro);
+        builder.append(", numero=");
+        builder.append(numero);
+        builder.append(", complemento=");
+        builder.append(complemento);
+        builder.append("]");
+        return builder.toString();
     }
 
 }
