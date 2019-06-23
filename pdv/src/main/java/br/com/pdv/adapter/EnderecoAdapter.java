@@ -28,10 +28,10 @@ public class EnderecoAdapter implements Adapter<Endereco, ClienteRequestDTO, End
     }
 
     @Override
-    public List<EnderecoDTO> entityToResponse(List<Endereco> entiies) {
+    public List<EnderecoDTO> entityToResponse(List<Endereco> enderecos) {
         List<EnderecoDTO> dtos = new ArrayList<>();
         
-        for(Endereco endereco : entiies) {
+        for(Endereco endereco : enderecos) {
             EnderecoDTO enderecoDTO = enderecoToEnderecoDTO(endereco);
             dtos.add(enderecoDTO);
         }
