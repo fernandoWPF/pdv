@@ -34,8 +34,11 @@ public class Propriedades {
         LOG.debug("Configuracoes inicializadas.");
     }
 
-    public static Map<String, String> getConfiguracoes() {
-        return configuracoes;
+    public static String get(String chave) {
+        if(!configuracoes.containsKey(chave)) {
+            LOG.warn("Configuracao {} nao localizada", chave);
+        }
+        return configuracoes.get(chave);
     }
     
     private void setTimezone(String timezone) {
