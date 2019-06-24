@@ -2,6 +2,7 @@ package br.com.pdv.configuracao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import br.com.pdv.repository.ConfiguracaoRepository;
 public class Propriedades {
 
     private static final Logger LOG = LogManager.getLogger(Propriedades.class);
+    private static final String TIMEZONE_DEFAULT = "UTC"; 
 
     @Autowired
     private ConfiguracaoRepository configuracaoRepository;
@@ -42,7 +44,7 @@ public class Propriedades {
     }
     
     private void setTimezone(String timezone) {
-        TimeZone.setDefault(TimeZone.getTimeZone(timezone));
+        TimeZone.setDefault(TimeZone.getTimeZone(Objects.isNull(timezone) ? TIMEZONE_DEFAULT : timezone));
         LOG.debug("Timezone setado para {}", TimeZone.getDefault());
     }
 
