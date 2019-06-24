@@ -25,24 +25,48 @@ public class ClienteRequestDTO {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getCpf() {
         return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getSexo() {
         return sexo;
     }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public String getCep() {
         return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public Integer getNumeroEndereco() {
         return numeroEndereco;
     }
 
+    public void setNumeroEndereco(Integer numeroEndereco) {
+        this.numeroEndereco = numeroEndereco;
+    }
+
     public String getComplementoEndereco() {
         return complementoEndereco;
+    }
+
+    public void setComplementoEndereco(String complementoEndereco) {
+        this.complementoEndereco = complementoEndereco;
     }
 
     @Override
