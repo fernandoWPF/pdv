@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.pdv.domain.Sexo;
 import br.com.pdv.domain.dto.ClienteRequestDTO;
-import br.com.pdv.service.exception.BusinessException;
+import br.com.pdv.exception.BusinessException;
 
 @Component
 public class ClienteValidator implements Validator<ClienteRequestDTO>{

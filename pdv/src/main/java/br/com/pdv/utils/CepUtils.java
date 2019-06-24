@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.pdv.configuracao.Propriedades;
 import br.com.pdv.domain.dto.CepResponseDTO;
-import br.com.pdv.service.exception.BusinessException;
+import br.com.pdv.exception.BusinessException;
 import io.micrometer.core.instrument.util.StringUtils;
 
 public class CepUtils {

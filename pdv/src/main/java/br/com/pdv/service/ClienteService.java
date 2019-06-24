@@ -11,8 +11,8 @@ import br.com.pdv.adapter.ClienteAdapter;
 import br.com.pdv.domain.Cliente;
 import br.com.pdv.domain.dto.ClienteRequestDTO;
 import br.com.pdv.domain.dto.ClienteResponseDTO;
+import br.com.pdv.exception.BusinessException;
 import br.com.pdv.repository.ClienteRepository;
-import br.com.pdv.service.exception.BusinessException;
 import br.com.pdv.service.validator.ClienteValidator;
 
 @Service

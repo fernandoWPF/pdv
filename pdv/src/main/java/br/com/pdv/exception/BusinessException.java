@@ -1,4 +1,4 @@
-package br.com.pdv.service.exception;
+package br.com.pdv.exception;
 
 public class BusinessException extends RuntimeException {
 
