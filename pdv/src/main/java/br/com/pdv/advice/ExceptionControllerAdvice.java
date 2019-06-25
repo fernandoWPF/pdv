@@ -1,6 +1,7 @@
 package br.com.pdv.advice;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,4 +32,11 @@ public class ExceptionControllerAdvice {
         builder.append(bindingResult.getFieldError().getDefaultMessage());
         return new ErrorDTO(String.valueOf(builder));
     }
+    
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorDTO trataException(final AccessDeniedException exception) {
+        return new ErrorDTO(exception.getMessage());
+    }
+
 }
