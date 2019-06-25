@@ -67,7 +67,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         clientBuilder = inMemory
                 .withClient(usuarios.get(0).getNome())
                 .secret(passwordEncoder.encode(usuarios.get(0).getSenha()))
-                .authorities(usuarios.get(0).getPermissoes().toArray(new String[usuarios.get(0).getPermissoes().size()]))
+                .authorities(usuarios.get(0).getPermissoes())
                 .authorizedGrantTypes(GRANT_TYPES)
                 .accessTokenValiditySeconds(prazoToken)
                 .scopes(SCOPES);
@@ -78,7 +78,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             clientBuilder.and()
                 .withClient(usuario.getNome())
                 .secret(passwordEncoder.encode(usuario.getSenha()))
-                .authorities(usuario.getPermissoes().toArray(new String[usuario.getPermissoes().size()]))
+                .authorities(usuario.getPermissoes())
                 .authorizedGrantTypes(GRANT_TYPES)
                 .accessTokenValiditySeconds(prazoToken)
                 .scopes(SCOPES);

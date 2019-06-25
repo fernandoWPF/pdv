@@ -2,21 +2,20 @@ package br.com.pdv.security;
 
 import java.util.List;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@ConfigurationProperties(prefix = "credenciais")
+import br.com.pdv.repository.UsuarioRepository;
+
+@Component
 public class Credenciais {
 
-    private List<Usuario> usuarios;
+    @Autowired
+    private UsuarioRepository repository;
 
     public List<Usuario> getUsuarios() {
-        return usuarios;
+        return repository.findAll();
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
 
 }

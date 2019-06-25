@@ -1,35 +1,27 @@
 package br.com.pdv.security;
 
-import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "usuario")
 public class Usuario {
 
+    @Id
+    private String id;
     private String nome;
     private String senha;
-    private List<String> permissoes;
+    private String[] permissoes;
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public List<String> getPermissoes() {
+    public String[] getPermissoes() {
         return permissoes;
-    }
-
-    public void setPermissoes(List<String> permissoes) {
-        this.permissoes = permissoes;
     }
 
     @Override
