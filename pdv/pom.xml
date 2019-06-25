@@ -87,7 +87,7 @@
 					<includes>
 						<include>${project.basedir}/target/pdv.jar</include>
 					</includes>
-					<jdkVersion>11</jdkVersion>
+					<jdkVersion>1.8</jdkVersion>
 					<processTypes>
 						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/pdv.jar</web>
 					</processTypes>
