@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/pdv/pdv
 
     docker:
-      - image: circleci/openjdk:1.8-jdk-browsers
+      - image: circleci/openjdk:11-jdk-browsers
 
     steps:
 
@@ -13,14 +13,14 @@ jobs:
           path: ~/pdv
 
       - restore_cache:
-          key: pdv-{{ checksum "pom.xml" }}
+          key: pdv/pdv-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
       
       - save_cache:
           paths:
             - ~/.m2
-          key: pdv-{{ checksum "pom.xml" }}
+          key: pdv/pdv-{{ checksum "pom.xml" }}
       
       - run: mvn clean install heroku:deploy
      
@@ -30,7 +30,7 @@ jobs:
       - store_artifacts:
           path: target/pdv.jar
       
-      - run: bash ~/pdv/.circleci/setup-heroku.sh
+      - run: bash ~/.circleci/setup-heroku.sh
       
       - add_ssh_keys:
           fingerprints:
