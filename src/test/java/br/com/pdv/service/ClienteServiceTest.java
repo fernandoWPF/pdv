@@ -82,16 +82,16 @@ public class ClienteServiceTest {
         Endereco enderecoSalvo = clienteSalvo.getEndereco();
         
         Assert.assertNotNull(clienteSalvo.getId());
-        Assert.assertEquals(clienteSalvo.getNome(), cliente.getNome());
-        Assert.assertEquals(clienteSalvo.getCpf(), cliente.getCpf());
-        Assert.assertEquals(clienteSalvo.getSexo(), cliente.getSexo());
-        Assert.assertEquals(enderecoSalvo.getNumero(), cliente.getEndereco().getNumero());
+        Assert.assertEquals(cliente.getNome(), clienteSalvo.getNome());
+        Assert.assertEquals(cliente.getCpf(), clienteSalvo.getCpf());
+        Assert.assertEquals(cliente.getSexo(), clienteSalvo.getSexo());
+        Assert.assertEquals(cliente.getEndereco().getNumero(), enderecoSalvo.getNumero());
         
-        Assert.assertEquals(enderecoSalvo.getBairro(), endereco.getBairro());
-        Assert.assertEquals(enderecoSalvo.getCep(), endereco.getCep());
-        Assert.assertEquals(enderecoSalvo.getCidade(), endereco.getCidade());
-        Assert.assertEquals(enderecoSalvo.getEstado(), endereco.getEstado());
-        Assert.assertEquals(enderecoSalvo.getLogradouro(), endereco.getLogradouro());
+        Assert.assertEquals(endereco.getBairro(), enderecoSalvo.getBairro());
+        Assert.assertEquals(endereco.getCep(), enderecoSalvo.getCep());
+        Assert.assertEquals(endereco.getCidade(), enderecoSalvo.getCidade());
+        Assert.assertEquals(endereco.getEstado(), enderecoSalvo.getEstado());
+        Assert.assertEquals(endereco.getLogradouro(), enderecoSalvo.getLogradouro());
 
     }
 
@@ -139,9 +139,9 @@ public class ClienteServiceTest {
         
         if(clienteAlterado.isPresent()) {
             Assert.assertNotNull(clienteAlterado.get().getId());
-            Assert.assertEquals(clienteAlterado.get().getNome(), "Maria");
-            Assert.assertEquals(clienteAlterado.get().getCpf(), cliente.getCpf());
-            Assert.assertEquals(clienteAlterado.get().getSexo(), cliente.getSexo());
+            Assert.assertEquals("Maria",clienteAlterado.get().getNome());
+            Assert.assertEquals(cliente.getCpf(), clienteAlterado.get().getCpf());
+            Assert.assertEquals(cliente.getSexo(), clienteAlterado.get().getSexo());
         }
         
     }
