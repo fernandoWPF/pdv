@@ -1,7 +1,0 @@
-br\com\pdv\service\ClienteServiceTest.class
-br\com\pdv\domain\dto\ClienteResponseDTOTest.class
-br\com\pdv\adapter\ClienteAdapterTest.class
-br\com\pdv\domain\EnderecoTest.class
-br\com\pdv\adapter\EnderecoAdapterTest.class
-br\com\pdv\domain\dto\EnderecoDTOTest.class
-br\com\pdv\domain\ClienteTest.class

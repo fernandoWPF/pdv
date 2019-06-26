@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.com.pdv.adapter.EnderecoAdapterTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.704 s - in br.com.pdv.adapter.EnderecoAdapterTest
