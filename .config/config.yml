@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~/pdv
+    working_directory: ~/pdv/pdv
 
     docker:
       - image: circleci/openjdk:1.8-jdk-browsers
