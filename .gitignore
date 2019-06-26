@@ -3,3 +3,4 @@
 .settings/
 .sonarlint/
 /target/
+/src/main/resource/application.yml
