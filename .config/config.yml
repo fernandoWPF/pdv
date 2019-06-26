@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+
+    working_directory: ~/pdv
+
+    docker:
+      - image: circleci/openjdk:1.8-jdk-browsers
+
+    steps:
+
+      - checkout:
+          path: ~/pdv
+
+      - restore_cache:
+          key: pdv-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: pdv-{{ checksum "pom.xml" }}
+      
+      - run: mvn clean install heroku:deploy
+     
+      - store_test_results:
+          path: target/surefire-reports
+      
+      - store_artifacts:
+          path: target/pdv.jar
+      
+      - run: bash ~/pdv/.circleci/setup-heroku.sh
+      
+      - add_ssh_keys:
+          fingerprints:
+            - $HEROKU_SSH_FINGERPRINT
