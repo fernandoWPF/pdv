@@ -25,7 +25,6 @@
 
 	<build>
 		<finalName>pdv</finalName>
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -80,7 +79,6 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -109,16 +107,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<forkCount>3</forkCount>
-					<reuseForks>true</reuseForks>
-					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-				</configuration>
-				<version>2.22.0</version>
-			</plugin>
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -153,11 +142,17 @@
 					<includes>
 						<include>${project.basedir}/target/pdv.jar</include>
 					</includes>
-					<jdkVersion>1.8</jdkVersion>
+					<jdkVersion>11</jdkVersion>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/pdv.jar</web>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/pdva.jar</web>
 					</processTypes>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
 			</plugin>
 
 		</plugins>
