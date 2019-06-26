@@ -16,7 +16,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 
 import br.com.pdv.configuracao.Propriedades;
-import br.com.pdv.exception.BusinessException;
 
 @Configuration
 @EnableAuthorizationServer
@@ -27,6 +26,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private static final String GRANT_TYPES = "client_credentials";
     private static final String SCOPES = "app";
     private static final String CHAVE_PRAZO_TOKEN = "oauth2.prazo.token";
+    private static final String PRAZO_TOKEN_DEFAULT = "86400";
 
     @Autowired
     private Credenciais credenciais;
@@ -48,7 +48,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
         LOG.debug("Carregando dados de credenciais oAuth2...");
 
-        final Integer prazoToken = Integer.valueOf(Propriedades.get(CHAVE_PRAZO_TOKEN));
+        String chave = Propriedades.get(CHAVE_PRAZO_TOKEN);
+        final Integer prazoToken = Integer.valueOf(chave == null ? PRAZO_TOKEN_DEFAULT : chave);
 
         LOG.debug("Prazo para expiração de token: {} segundos", prazoToken);
 
@@ -56,35 +57,35 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         
         List<Usuario> usuarios = credenciais.getUsuarios();
         
-        if(usuarios.isEmpty()) {
-            throw new BusinessException("Nenhum ususario configurado para acessar os servicos.");
-        }
-        
         LOG.debug("{} usuario(s) configurado(s): {}", usuarios.size(), usuarios);
         
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        
-        clientBuilder = inMemory
-                .withClient(usuarios.get(0).getNome())
-                .secret(passwordEncoder.encode(usuarios.get(0).getSenha()))
-                .authorities(usuarios.get(0).getPermissoes())
-                .authorizedGrantTypes(GRANT_TYPES)
-                .accessTokenValiditySeconds(prazoToken)
-                .scopes(SCOPES);
-
-        usuarios.remove(0);
-
-        for (Usuario usuario : usuarios) {
-            clientBuilder.and()
+        if(!usuarios.isEmpty()) {
+            
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            
+            clientBuilder = inMemory
+                    .withClient(usuarios.get(0).getNome())
+                    .secret(passwordEncoder.encode(usuarios.get(0).getSenha()))
+                    .authorities(usuarios.get(0).getPermissoes())
+                    .authorizedGrantTypes(GRANT_TYPES)
+                    .accessTokenValiditySeconds(prazoToken)
+                    .scopes(SCOPES);
+            
+            usuarios.remove(0);
+            
+            for (Usuario usuario : usuarios) {
+                clientBuilder.and()
                 .withClient(usuario.getNome())
                 .secret(passwordEncoder.encode(usuario.getSenha()))
                 .authorities(usuario.getPermissoes())
                 .authorizedGrantTypes(GRANT_TYPES)
                 .accessTokenValiditySeconds(prazoToken)
                 .scopes(SCOPES);
+            }
+            
+            LOG.debug("OAuth2 configurado.");
         }
-
-        LOG.debug("OAuth2 configurado.");
+        
 
     }
 

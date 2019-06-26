@@ -67,7 +67,6 @@ public class ClienteServiceTest {
         
         PowerMockito.mockStatic(Propriedades.class);
         PowerMockito.when(Propriedades.get("cep.url")).thenReturn("https://viacep.com.br/ws");
-        
     }
 
     @Test
