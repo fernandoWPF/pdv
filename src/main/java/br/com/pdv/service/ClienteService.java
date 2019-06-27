@@ -13,7 +13,7 @@ import br.com.pdv.domain.dto.ClienteRequestDTO;
 import br.com.pdv.domain.dto.ClienteResponseDTO;
 import br.com.pdv.exception.BusinessException;
 import br.com.pdv.repository.ClienteRepository;
-import br.com.pdv.service.validator.ClienteValidator;
+import br.com.pdv.service.validator.Validator;
 
 @Service
 public class ClienteService {
@@ -21,13 +21,13 @@ public class ClienteService {
     private static final Logger LOG = LogManager.getLogger(ClienteService.class);
     
     @Autowired
-    private ClienteValidator clienteValidator;
+    private Validator<ClienteRequestDTO> validator;
     @Autowired
     private ClienteRepository clienteRepository;
 
     public void salvar(ClienteRequestDTO request) {
         LOG.debug("Iniciando sequencia para salvar novo cliente...");
-        clienteValidator.validate(request);
+        validator.validate(request);
         ClienteAdapter adapter = new ClienteAdapter();
         Cliente cliente = adapter.requestToEntity(request);
         clienteRepository.save(cliente);
